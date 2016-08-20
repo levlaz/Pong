@@ -1,0 +1,26 @@
+[
+    {
+        "url": "https://builda-ekg.herokuapp.com/",
+        "assertions": [
+            {
+                "type": "statusCode",
+                "statusCode": "200"
+            }
+        ]
+    },
+    {
+        "url": "http://swiftpm.honza.tech/to-json",
+        "body": "aW1wb3J0IFBhY2thZ2VEZXNjcmlwdGlvbg0KDQpsZXQgcGFja2FnZSA9IFBhY2thZ2UobmFtZTogIkhlbGxvIiwgZGVwZW5kZW5jaWVzOiBbLlBhY2thZ2UodXJsOiAiaHR0cHM6Ly9naXRodWIuY29tL2Zvby9iYXIuZ2l0IiwgbWFqb3JWZXJzaW9uOiAxLCBtaW5vcjogMildKQ0K",
+        "method": "POST",
+        "assertions": [
+            {
+                "type": "statusCode",
+                "statusCode": "200"
+            },
+            {
+                "type": "body",
+                "body": "eyJkZXBlbmRlbmNpZXMiOiBbeyJ1cmwiOiAiaHR0cHM6Ly9naXRodWIuY29tL2Zvby9iYXIuZ2l0IiwgInZlcnNpb24iOiB7Imxvd2VyQm91bmQiOiAiMS4yLjAiLCAidXBwZXJCb3VuZCI6ICIxLjIuOTIyMzM3MjAzNjg1NDc3NTgwNyJ9fV0sICJleGNsdWRlIjogW10sICJuYW1lIjogIkhlbGxvIiwgInBhY2thZ2UudGFyZ2V0cyI6IFtdLCAidGVzdERlcGVuZGVuY2llcyI6IFtdfQ=="
+            }
+        ]
+    }
+]
