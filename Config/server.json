@@ -1,5 +1,6 @@
 {
-    "interval-seconds": "10",
+    "interval": "15",
+    "redis-port": "6381",
     "on-fail": [
         {
             "type": "email",

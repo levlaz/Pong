@@ -38,7 +38,31 @@ struct EmailSender {
         self.password = password
     }
     
-    func sendEmail() throws {
+    func body(head: String, result: PingerRunResult) -> String {
+        var body = "Greetings, \n\n"
+        body += "\(head)\n\n"
+        result.results.forEach { res in
+            body += "- \(res.pong.hasFailed() ? "⛔️" : "✅") \(res.ping.url)\n"
+        }
+        body += "\n\n"
+        body += "Just so you know. \nYours, Pong bot\n"
+        body += "https://github.com/czechboy0/Pong\n"
+        return body
+    }
+    
+    func sendEmailStartedFailing(result: PingerRunResult) throws {
+        let subject = "⚠️ Some Pong assertions started failing!"
+        let head = "Some assertions have just started failing:"
+        try sendEmail(subject: subject, body: body(head: head, result: result))
+    }
+
+    func sendEmailStoppedFailing(result: PingerRunResult) throws {
+        let subject = "✅ All Pong assertions working again!"
+        let head = "All assertions are passing again! 👍"
+        try sendEmail(subject: subject, body: body(head: head, result: result))
+    }
+
+    func sendEmail(subject: String, body: String) throws {
         #if os(Linux)
             let client = try SMTPClient<TLSClientStream>.makeSendGridClient()
         #else
@@ -49,8 +73,8 @@ struct EmailSender {
         let email = Email(
             from: source,
             to: target,
-            subject: "⚠️ Some of your Pong assertions have failed!",
-            body: "Hello from Vapor SMTP 👋"
+            subject: subject,
+            body: body
         )
         let (code, reply) = try client.send(email, using: credentials)
         guard code == 221 else {

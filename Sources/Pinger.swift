@@ -1,8 +1,18 @@
 import Vapor
 
-struct PingPong: NodeRepresentable {
+struct PingPong: NodeConvertible {
     let ping: Ping
     let pong: PongResult
+    
+    init(ping: Ping, pong: PongResult) {
+        self.ping = ping
+        self.pong = pong
+    }
+    
+    init(node: Node, in context: Context) throws {
+        self.ping = try node.extract("ping")
+        self.pong = try node.extract("pongResult")
+    }
     
     func makeNode() throws -> Node {
         return [
@@ -12,13 +22,29 @@ struct PingPong: NodeRepresentable {
     }
 }
 
-struct PingerRunResult: NodeRepresentable {
+struct PingerRunResult: NodeConvertible {
     let results: [PingPong]
+    
+    init(results: [PingPong]) {
+        self.results = results
+    }
+    
+    init(node: Node, in context: Context) throws {
+        self.results = try node.extract("results")
+    }
     
     func makeNode() throws -> Node {
         return [
             "results": try results.makeNode()
         ]
+    }
+    
+    func failed() -> [PingPong] {
+        return results.filter { $0.pong.hasFailed() }
+    }
+    
+    func hasFailure() -> Bool {
+        return !failed().isEmpty
     }
 }
 
@@ -26,6 +52,7 @@ struct Pinger {
     
     let drop: Droplet
     var pings: [Ping]
+    var isFailing: Bool = false
     
     init(drop: Droplet) throws {
         guard let pingsJSON = drop.config["pings"] as? JSON else {
@@ -55,7 +82,7 @@ struct Pinger {
             let result = pong.verify(assertions: ping.assertions)
             return result
         } catch {
-            return .error(error)
+            return .error(String(error))
         }
     }
 }

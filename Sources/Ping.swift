@@ -23,7 +23,10 @@ extension String {
 extension Ping {
     
     func toRequest() throws -> Request {
-        return try Request(method: method, uri: url, body: .data(body?.bytes ?? []))
+        return try Request(method: method,
+                           uri: url,
+                           headers: ["User-Agent": "pong.honza.tech"],
+                           body: .data(body?.bytes ?? []))
     }
 }
 
