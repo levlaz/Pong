@@ -7,13 +7,14 @@ Do you have servers that you need to ensure are up at all times? Are you also an
 Pong lets you
 - define URLs to periodically call with a specified HTTP method and an optional body
 - define assertions that need to be verified after a response returns
-- runs all these periodically (every 60 seconds by default)
-- if any assertion fails, you get an email telling you which failed
+- run all these periodically (every 60 seconds by default)
+- if any assertion fails, you get an email telling you which assertion failed
 - you get an email again once the failure has been fixed
+- configure everything from json files: [pings](Config/pings.json) and [server](Config/server.json).
 
 Very simple, but covers most of the basic needs of ensuring your service is up and functioning correctly. But as always, PR's welcome!
 
-# Ensure server responses match your requirements
+# Pong Assertions
 
 Each response from a monitored server is evaluated against a set of `assertions`. So far these assertions are available:
 - `statusCode` - ensures a response ended with a specific status code
