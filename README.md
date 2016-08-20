@@ -11,7 +11,15 @@ Do you have servers that you need to ensure are up at all times? Are you also an
 - create a new droplet on Digital Ocean with Docker running on Ubuntu
 - clone your fork of this project there
 - build the image with `docker build .`
-- start a container with `docker run -it -d --restart=on-failure -v $PWD:/package -p 80:8080 -e "PONG_EMAIL_PASSWORD=$PONG_EMAIL_PASSWORD" -e "PONG_EMAIL_TARGET=$PONG_EMAIL_TARGET" -e "PONG_EMAIL_USERNAME=$PONG_EMAIL_USERNAME" 114b974c221e` where you supply your own environment variables `PONG_EMAIL_PASSWORD`, `PONG_EMAIL_USERNAME` and `PONG_EMAIL_TARGET` (which is for the email address to which to send emails when you services go down)
+- start a container with 
+
+```
+
+docker run -it -d --restart=on-failure -v $PWD:/package -p 80:8080 -e "PONG_EMAIL_PASSWORD=$PONG_EMAIL_PASSWORD" -e "PONG_EMAIL_TARGET=$PONG_EMAIL_TARGET" -e "PONG_EMAIL_USERNAME=$PONG_EMAIL_USERNAME" IMAGE_ID
+
+``` 
+
+where you supply your own environment variables `PONG_EMAIL_PASSWORD`, `PONG_EMAIL_USERNAME` and `PONG_EMAIL_TARGET` (which is for the email address to which to send emails when you services go down). `IMAGE_ID` is the built image from `docker build .`
 
 :gift_heart: Contributing
 ------------
