@@ -24,11 +24,10 @@ class PeriodicRunner {
                 let duration = -start.timeIntervalSinceNow
                 print("Finishing periodic action, duration \(duration)")
                 let left = max(self.interval - duration, 4.0)
-                let next = Date().timeIntervalSince1970 + left
                 #if os(Linux)
-                Thread.sleepForTimeInterval(next)
+                Thread.sleepForTimeInterval(left)
                 #else                
-                Thread.sleep(forTimeInterval: next)
+                Thread.sleep(forTimeInterval: left)
                 #endif
             }
         }
