@@ -4,6 +4,23 @@ Self-deployed uptime monitoring.
 
 Do you have servers that you need to ensure are up at all times? Are you also annoyed that dedicated uptime monitoring services cost *more* than the servers you're running on? Then just deploy your own monitoring server. That's where Pong comes in.
 
+Pong lets you
+- define URLs to periodically call with a specified HTTP method and an optional body
+- define assertions that need to be verified after a response returns
+- runs all these periodically (every 60 seconds by default)
+- if any assertion fails, you get an email telling you which failed
+- you get an email again once the failure has been fixed
+
+Very simple, but covers most of the basic needs of ensuring your service is up and functioning correctly. But as always, PR's welcome!
+
+# Ensure server responses match your requirements
+
+Each response from a monitored server is evaluated against a set of `assertions`. So far these assertions are available:
+- `statusCode` - ensures a response ended with a specific status code
+- `body` - ensures a response's body matches provided data
+
+To build more assertions, just create a new type conforming to `PongAssertion`
+
 # Deployment steps
 
 - create a [SendGrid](sendgrid.com) account and create new credentials, which you'll supply in `$PONG_EMAIL_USERNAME` and `$PONG_EMAIL_PASSWORD`
