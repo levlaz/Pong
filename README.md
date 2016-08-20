@@ -1,6 +1,6 @@
-# Pong
+# :bell: Pong
 
-Self-deployed uptime monitoring.
+Self-deployed server uptime monitoring.
 
 Do you have servers that you need to ensure are up at all times? Are you also annoyed that dedicated uptime monitoring services cost *more* than the servers you're running on? Then just deploy your own monitoring server. That's where Pong comes in.
 
