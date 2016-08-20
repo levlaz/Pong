@@ -18,14 +18,8 @@ drop.middleware.append(LoggingMiddleware(app: drop))
 // setup objects
 
 let pinger = try Pinger(drop: drop)
-//do {
-//    let result = try pinger.run()
-//    print("Objects created")
-//} catch {
-//    print(error)
-//}
-
 let statusRenderer = StatusRenderer(drop: drop)
+let emailSender = try EmailSender(drop: drop)
 
 // routes
 
