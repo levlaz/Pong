@@ -1,0 +1,10 @@
+
+build:
+	docker build .
+
+run-local:
+	docker run -it --rm -v $PWD:/package -p 8080:8080 -e "PONG_EMAIL_PASSWORD=$PONG_EMAIL_PASSWORD" -e "PONG_EMAIL_TARGET=$PONG_EMAIL_TARGET" -e "PONG_EMAIL_USERNAME=$PONG_EMAIL_USERNAME" 6e0153663fa4
+
+run-server:
+	docker run -it -d --restart=on-failure -v $PWD:/package -p 80:8080 -e "PONG_EMAIL_PASSWORD=$PONG_EMAIL_PASSWORD" -e "PONG_EMAIL_TARGET=$PONG_EMAIL_TARGET" -e "PONG_EMAIL_USERNAME=$PONG_EMAIL_USERNAME" 114b974c221e
+
