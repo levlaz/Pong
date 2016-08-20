@@ -24,7 +24,8 @@ To build more assertions, just create a new type conforming to `PongAssertion`
 
 # Deployment steps
 
-- create a [SendGrid](sendgrid.com) account and create new credentials, which you'll supply in `$PONG_EMAIL_USERNAME` and `$PONG_EMAIL_PASSWORD`
+- fork this repo
+- create a [SendGrid](sendgrid.com) account and create new credentials, which you'll supply in `$PONG_EMAIL_USERNAME` and `$PONG_EMAIL_PASSWORD` later
 - edit the file [`Config/pings.json`](Config/pings.json) and [`Config/server.json`](Config/server.json) to your liking
 - create a new droplet on Digital Ocean with Docker running on Ubuntu
 - clone your fork of this project there
@@ -38,6 +39,10 @@ docker run -it -d --restart=on-failure -v $PWD:/package -p 80:8080 -e "PONG_EMAI
 ``` 
 
 where you supply your own environment variables `PONG_EMAIL_PASSWORD`, `PONG_EMAIL_USERNAME` and `PONG_EMAIL_TARGET` (which is for the email address to which to send emails when you services go down). `IMAGE_ID` is the built image from `docker build .`
+
+# Web frontend
+
+> WIP :construction_worker:
 
 :gift_heart: Contributing
 ------------
