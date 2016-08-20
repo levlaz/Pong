@@ -1,13 +1,17 @@
 # Pong
 
-Uptime monitoring as a self-deployed service.
+Self-deployed uptime monitoring.
 
-Do you have servers that you need to ensure are up at all times? Are you also annoyed that dedicated uptime services cost *more* than the servers you're running on? Then just deploy your own monitoring server. That's where Pong comes in.
+Do you have servers that you need to ensure are up at all times? Are you also annoyed that dedicated uptime monitoring services cost *more* than the servers you're running on? Then just deploy your own monitoring server. That's where Pong comes in.
 
-# Requirements for running locally
+# Deployment steps
 
-- a Redis server running on the port 6380 before booting the server (just `redis-server ./Redis/redis.conf` from the root folder to start the server with the desired config)
-- environment variables for the target email address where to send alert emails when something goes down (`$PONG_EMAIL_TARGET`), [SendGrid](sendgrid.com) credentials in `$PONG_EMAIL_USERNAME` and `$PONG_EMAIL_PASSWORD`
+- create a [SendGrid](sendgrid.com) account and create new credentials, which you'll supply in `$PONG_EMAIL_USERNAME` and `$PONG_EMAIL_PASSWORD`
+- edit the file [`Config/pings.json`](Config/pings.json) and [`Config/server.json`](Config/server.json) to your liking
+- create a new droplet on Digital Ocean with Docker running on Ubuntu
+- clone your fork of this project there
+- build the image with `docker build .`
+- start a container with `docker run -it -d --restart=on-failure -v $PWD:/package -p 80:8080 -e "PONG_EMAIL_PASSWORD=$PONG_EMAIL_PASSWORD" -e "PONG_EMAIL_TARGET=$PONG_EMAIL_TARGET" -e "PONG_EMAIL_USERNAME=$PONG_EMAIL_USERNAME" 114b974c221e` where you supply your own environment variables `PONG_EMAIL_PASSWORD`, `PONG_EMAIL_USERNAME` and `PONG_EMAIL_TARGET` (which is for the email address to which to send emails when you services go down)
 
 :gift_heart: Contributing
 ------------
