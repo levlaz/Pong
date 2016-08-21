@@ -46,6 +46,12 @@ If you navigate to your server in the browser, you'll get a quick status page
 
 ![](Meta/web.png)
 
+# Email notifications
+
+And of course, if you're on the go and any of your servers goes down, you'll find out immediately. Not from people on Twitter hours later :-)
+
+![](Meta/mobile.png)
+
 :gift_heart: Contributing
 ------------
 Please create an issue with a description of your problem or open a pull request with a fix.
