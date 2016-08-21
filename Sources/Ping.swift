@@ -3,6 +3,7 @@ import Node
 import Foundation
 
 struct Ping {
+    let name: String
     let url: String
     let body: String?
     let method: HTTP.Method
@@ -39,6 +40,7 @@ extension Ping: NodeConvertible {
         self.body = body?.base64DecodedString
         let method: String? = try node.extract("method")
         self.method = Method(method ?? "GET")
+        self.name = try node.extract("name")
         self.assertions = try parseAssertions(nodes: nodes, context: context)
     }
     
@@ -46,6 +48,7 @@ extension Ping: NodeConvertible {
         let nodes = try assertions.map({ try $0.makeNode() })
         let node: Node = try nodes.makeNode()
         var out: Node = [
+            "name": name.makeNode(),
             "url": url.makeNode(),
             "assertions": node
         ]

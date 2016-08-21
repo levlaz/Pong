@@ -35,3 +35,11 @@ extension HTTP.Method {
         }
     }
 }
+
+extension String {
+    
+    func substring(maxCharacters: Int) -> String {
+        let end = index(startIndex, offsetBy: maxCharacters, limitedBy: endIndex)
+        return substring(to: end ?? endIndex)
+    }
+}

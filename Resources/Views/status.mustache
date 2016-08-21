@@ -1,9 +1,40 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
-  
+  <title>Pong status</title>
+  <link type="text/css" rel="stylesheet" href="css/status.css">
 </head>
 <body>
-  <h1>Pong</h1>
+  <div id="main">
+    <h1><a href="https://github.com/czechboy0/pong" target="_blank">Pong</a></h1>
+    <h2>Last checked {{ago}} seconds ago</h2>
+    <h2><b>{{overview}}</b></h2>
+    <h2><i><a href="/last">Response details JSON</a></i></h2>
+
+    <!-- Responsive table starts here -->
+    <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+    <div class="table-responsive-vertical shadow-z-1">
+      <!-- Table starts here -->
+      <table id="table" class="table table-hover">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Assertions</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#pings}}
+        <tr>
+            <td data-title="Status">{{status}}</td>
+            <td data-title="Assertions">{{assertions}}</td>
+            <td data-title="Link">
+            <a href="{{url}}" target="_blank">{{name}}</a>
+            </td>
+        </b>
+        {{/pings}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
-</html>

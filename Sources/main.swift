@@ -60,7 +60,6 @@ do {
             print("Ran: \(result.hasFailure() ? "failed" : "succeeded")")
         } catch {
             print("Failed periodic action, error \(error)")
-            fatalError()
         }
     })
     
@@ -68,12 +67,8 @@ do {
     
     drop.get("/") { req in
         return Response(redirect: "/status")
-        //TODO: index page
-        //returns a rendered page for all the status checks and how they're doing
-        //    let context: [String: Any] = [:]
-        //    return try drop.view("index.mustache", context: context)
     }
-    
+        
     drop.get("last") { req in
         if let last = try db.getLastResultJSON() {
             return last
@@ -93,16 +88,10 @@ do {
     }
     
     drop.get("status") { req in
-        
-        guard let statusView = StatusView(rawValue: req.query?["format"]?.string ?? "html") else {
-            return try Response(status: .badRequest, json: .object(["error": .string("invalid format")]))
-        }
-        
-        switch statusView {
-        case .html:
-            return try statusRenderer.renderHTML()
-        case .json:
-            return try statusRenderer.renderJSON()
+        if let last = try db.getLastResult() {
+            return try statusRenderer.renderHTML(time: last.0, result: last.1)
+        } else {
+            return try JSON(["message": "no result cached yet"])
         }
     }
     

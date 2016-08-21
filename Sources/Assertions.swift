@@ -60,7 +60,7 @@ struct BodyAssertion: PongAssertion {
     }
     
     var description: String {
-        return "body == \(body)"
+        return "body match"
     }
 
     func verify(pong: Pong) -> PongAssertionResult {

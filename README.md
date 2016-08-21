@@ -42,7 +42,9 @@ where you supply your own environment variables `PONG_EMAIL_PASSWORD`, `PONG_EMA
 
 # Web frontend
 
-> WIP :construction_worker:
+If you navigate to your server in the browser, you'll get a quick status page
+
+![](Meta/web.png)
 
 :gift_heart: Contributing
 ------------
