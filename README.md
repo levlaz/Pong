@@ -50,7 +50,7 @@ If you navigate to your server in the browser, you'll get a quick status page
 
 And of course, if you're on the go and any of your servers goes down, you'll find out immediately. Not from people on Twitter hours later :-)
 
-<img src="Meta/mobile.png" width="100px">
+<img src="Meta/mobile.png" width="400px">
 
 :gift_heart: Contributing
 ------------
