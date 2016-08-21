@@ -4,6 +4,7 @@ import VaporMustache
 import Polymorphic
 import JSON
 import Foundation
+import gzip_vapor
 
 let providers: [Vapor.Provider.Type] = [VaporMustache.Provider.self]
 
@@ -15,6 +16,7 @@ let drop = Droplet(providers: providers)
 #endif
 
 drop.middleware.append(LoggingMiddleware(app: drop))
+drop.middleware.append(GzipServerMiddleware())
 
 do {
     // setup objects
