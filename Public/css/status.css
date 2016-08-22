@@ -76,9 +76,6 @@ body {
 .table > thead > tr,
 .table > tbody > tr,
 .table > tfoot > tr {
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -90,9 +87,6 @@ body {
   padding: 1.6rem;
   vertical-align: top;
   border-top: 0;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
 }
 .table > thead > tr > th {
   font-weight: 400;
