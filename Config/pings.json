@@ -1,15 +1,5 @@
 [
     {
-        "name": "builda-ekg",
-        "url": "https://builda-ekg.herokuapp.com/",
-        "assertions": [
-            {
-                "type": "statusCode",
-                "statusCode": "200"
-            }
-        ]
-    },
-    {
         "name": "swiftpm converter",
         "url": "http://swiftpm.honza.tech/to-json",
         "body": "aW1wb3J0IFBhY2thZ2VEZXNjcmlwdGlvbg0KDQpsZXQgcGFja2FnZSA9IFBhY2thZ2UobmFtZTogIkhlbGxvIiwgZGVwZW5kZW5jaWVzOiBbLlBhY2thZ2UodXJsOiAiaHR0cHM6Ly9naXRodWIuY29tL2Zvby9iYXIuZ2l0IiwgbWFqb3JWZXJzaW9uOiAxLCBtaW5vcjogMildKQ0K",
