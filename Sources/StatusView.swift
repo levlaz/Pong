@@ -9,23 +9,22 @@ struct StatusRenderer {
     func renderHTML(time: TimeInterval, result: PingerRunResult) throws -> ResponseRepresentable {
         let overview = result.hasFailure() ? "⚠️ Some checks are failing!" : "👍 All checks passed"
         let timeDiff = Int(Date().timeIntervalSince1970 - time)
-        let pings: [[String: Any]] = result.results.map { res in
+        let pings: [Node] = result.results.map { res -> Node in
             let status = res.pong.hasFailed() ? "⛔️" : "✅"
             let assertions = assertionStatus(res: res)
             return [
-                "status": status,
-                "assertions": assertions,
-                "name": res.ping.name,
-                "url": res.ping.url
+                "status": status.makeNode(),
+                "assertions": assertions.makeNode(),
+                "name": res.ping.name.makeNode(),
+                "url": res.ping.url.makeNode()
             ]
         }
-        let context: [String: Any] = [
-            "overview": overview,
-            "ago": timeDiff,
-            "pings": pings
+        let context: Node = [
+            "overview": overview.makeNode(),
+            "ago": timeDiff.makeNode(),
+            "pings": try pings.makeNode()
         ]
-        
-        return try drop.view("status.mustache", context: context)
+        return try drop.view.make("status.leaf", context)
     }
     
     func assertionStatus(res: PingPong) -> String {

@@ -8,7 +8,7 @@ class PeriodicRunner {
     
     var isRunning: Bool = false
     
-    init(interval: Double, action: () -> ()) {
+    init(interval: Double, action: @escaping () -> ()) {
         self.action = action
         self.interval = interval
     }

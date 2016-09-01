@@ -16,11 +16,11 @@ class DB {
     }
     
     func saveResult(result: PingerRunResult) throws {
-        var json = try result.makeNode().toJSON()
+        var node = try result.makeNode()
         //append current timestamp
         let timestamp = String(Date().timeIntervalSince1970)
-        json["time"] = timestamp.makeJSON()
-        let jsonString = try json.makeBytes().string
+        node["time"] = timestamp.makeNode()
+        let jsonString = try node.toJSON().makeBytes().string
         let count = try redbird.command("RPUSH", params: [key(), jsonString]).toInt()
         print("Saved result number \(count)")
     }

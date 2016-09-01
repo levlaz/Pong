@@ -3,8 +3,8 @@ import Node
 import JSON
 
 extension Node {
-    func toJSON() -> JSON {
-        return JSON.init(node: self, in: EmptyNode)
+    func toJSON() throws -> JSON {
+        return try JSON.init(node: self)
     }
 }
 

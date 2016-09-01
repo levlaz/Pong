@@ -7,8 +7,8 @@
 <body>
   <div id="main">
     <h1><a href="https://github.com/czechboy0/pong" target="_blank">Pong</a></h1>
-    <h2>Last checked {{ago}} seconds ago</h2>
-    <h2><b>{{overview}}</b></h2>
+    <h2>Last checked #(ago) seconds ago</h2>
+    <h2><b>#(overview)</b></h2>
     <h2><i><a href="/last">Response details JSON</a></i></h2>
 
     <!-- Responsive table starts here -->
@@ -24,15 +24,15 @@
           </tr>
         </thead>
         <tbody>
-        {{#pings}}
+        #loop(pings, "ping") {
         <tr>
-            <td data-title="Status">{{status}}</td>
-            <td data-title="Assertions">{{assertions}}</td>
+            <td data-title="Status">#(ping.status)</td>
+            <td data-title="Assertions">#(ping.assertions)</td>
             <td data-title="Link">
-            <a href="{{url}}" target="_blank">{{name}}</a>
+            <a href="#(ping.url)" target="_blank">#(ping.name)</a>
             </td>
         </b>
-        {{/pings}}
+        }
         </tbody>
       </table>
     </div>

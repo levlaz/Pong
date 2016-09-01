@@ -55,10 +55,10 @@ struct Pinger {
     var isFailing: Bool = false
     
     init(drop: Droplet) throws {
-        guard let pingsJSON = drop.config["pings"] as? JSON else {
+        guard let pingsNode = drop.config["pings"]?.node else {
             throw PongError.configNotJSON
         }
-        guard let node = pingsJSON.makeNode().nodeArray else {
+        guard let node = pingsNode.nodeArray else {
             throw PongError.pingTemplatesNotArray
         }
         self.drop = drop
@@ -82,7 +82,7 @@ struct Pinger {
             let result = pong.verify(assertions: ping.assertions)
             return result
         } catch {
-            return .error(String(error))
+            return .error(String(describing: error))
         }
     }
 }

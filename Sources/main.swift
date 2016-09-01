@@ -1,19 +1,11 @@
 import Vapor
 import HTTP
-import VaporMustache
 import Polymorphic
 import JSON
 import Foundation
 import gzip_vapor
 
-let providers: [Vapor.Provider.Type] = [VaporMustache.Provider.self]
-
-#if os(Linux)
-    import VaporTLS
-let drop = Droplet(client: Client<TLSClientStream>.self, providers: providers)
-#else
-let drop = Droplet(providers: providers)
-#endif
+let drop = Droplet()
 
 drop.middleware.append(LoggingMiddleware(app: drop))
 drop.middleware.append(GzipServerMiddleware())
@@ -75,7 +67,7 @@ do {
         if let last = try db.getLastResultJSON() {
             return last
         } else {
-            return try JSON(["message": "no result cached yet"])
+            return JSON(["message": "no result cached yet"])
         }
     }
     
@@ -85,7 +77,7 @@ do {
     }
     
     drop.get("pings") { req in
-        let config = drop.config["pings"] as! JSON
+        let config = try drop.config["pings"]!.node.toJSON()
         return config
     }
     
@@ -93,7 +85,7 @@ do {
         if let last = try db.getLastResult() {
             return try statusRenderer.renderHTML(time: last.0, result: last.1)
         } else {
-            return try JSON(["message": "no result cached yet"])
+            return JSON(["message": "no result cached yet"])
         }
     }
     
