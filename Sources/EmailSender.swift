@@ -1,9 +1,6 @@
 import Vapor
 import SMTP
 import Transport
-#if os(Linux)
-import VaporTLS
-#endif
 
 extension String {
     func trimmingQuotes() -> String {
@@ -63,11 +60,7 @@ struct EmailSender {
     }
 
     func sendEmail(subject: String, body: String) throws {
-        #if os(Linux)
-            let client = try SMTPClient<TLSClientStream>.makeSendGridClient()
-        #else
-            let client = try SMTPClient<TCPClientStream>.makeSendGridClient()
-        #endif
+        let client = try SMTPClient<TCPClientStream>.makeSendGridClient()
         
         let credentials = SMTPCredentials(user: username, pass: password)
         let email = Email(
