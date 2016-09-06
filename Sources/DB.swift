@@ -21,7 +21,12 @@ class DB {
         let timestamp = String(Date().timeIntervalSince1970)
         node["time"] = timestamp.makeNode()
         let jsonString = try node.toJSON().makeBytes().string
-        let count = try redbird.command("RPUSH", params: [key(), jsonString]).toInt()
+        let resp = try redbird
+            .pipeline()
+            .enqueue("RPUSH", params: [key(), jsonString])
+            .enqueue("LTRIM", params: [key(), "-10", "-1"]) //keep the last 10 only
+            .execute()
+        let count = try resp[0].toInt()
         print("Saved result number \(count)")
     }
     
