@@ -54,7 +54,7 @@ And of course, if you're on the go and any of your servers goes down, you'll fin
 
 Code of Conduct
 ---------------
-In order to have a more open and welcoming community, this project adheres to a [code of conduct](https://github.com/levlaz/Pong/blob/master/CONDUCT.md). Please adhere to this code of conduct in any interactions you have in this community. It is strictly enforced on all official repositories, websites, and resources. If you encounter someone violating these terms, please let a maintainer (@levlaz) know and we will address it as soon as possible.
+In order to have a more open and welcoming community, this project adheres to a [code of conduct](https://github.com/levlaz/Pong/blob/master/CONDUCT.md). Please adhere to this code of conduct in any interactions you have in this community. It is strictly enforced on all official repositories, websites, and resources. If you encounter someone violating these terms, please let a maintainer ([@levlaz](https://github.com/levlaz)) know and we will address it as soon as possible.
 
 :gift_heart: Contributing
 ------------
